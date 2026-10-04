@@ -8,9 +8,9 @@ Sechstes Stück der **Heuristische-Baumsuche-Linie** der "Konzepte"-Reihe für d
 
 ```
 Greedy Best-First Search (Wurzel)                                                          [gebaut]
- ├─ Beam Search → {Diverse Beam Search, Monobeam}          [Beam Search, Monobeam gebaut; Diverse nicht gebaut]
+ ├─ Beam Search → {Diverse Beam Search, Monobeam}          [Beam Search, Monobeam, Diverse gebaut]
  ├─ A* → Iterative Deepening A* (IDA*)                                                     [gebaut]
- └─ Monte Carlo Tree Search (MCTS)                                                         [nicht gebaut]
+ └─ Monte Carlo Tree Search (MCTS)                                                         [gebaut]
 Beam Search + A* → Beam Stack Search (Konvergenzpunkt)                     [DIESES STÜCK]
 ```
 
@@ -116,6 +116,4 @@ pytest tests/ -v
 
 ---
 
-Teil des [Operations-Research-Demo-Portfolios](https://sebastianhanisch.net/demos.html) von
-[Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning.
-Interesse an einer maßgeschneiderten Lösung? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Heuristische Baumsuche: Greedy bis MCTS](https://sebastianhanisch.net/konzepte-heuristische-baumsuche.html).

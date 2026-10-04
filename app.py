@@ -91,7 +91,7 @@ Was kostet der Beweis, und was bleibt vom Speichervorteil?
 st.caption(
     "Setzt auf [beam-search-demo](https://github.com/sebastian-hanisch/beam-search-demo) und [monobeam-demo](https://github.com/sebastian-hanisch/monobeam-demo) auf "
     "(derselbe Graph, dieselben Instanzen; Beam Search als Vergleich) und stellt die andere Speicher-Antwort der Linie, "
-    "[IDA\\*](https://github.com/sebastian-hanisch/ida-star-demo), daneben. Noch nicht gebaute Geschwister: Diverse Beam Search, Monte Carlo Tree Search (MCTS)."
+    "[IDA\\*](https://github.com/sebastian-hanisch/ida-star-demo), daneben. Weitere, inzwischen gebaute Geschwister: Diverse Beam Search, Monte Carlo Tree Search (MCTS)."
 )
 
 with st.expander("So funktioniert Beam-Stack Search", expanded=True):
@@ -371,6 +371,6 @@ Implementiert in `bss_algorithm.py` (Suchkerne, `beam_search`, `ida_star` aus de
 st.markdown("---")
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Heuristische Baumsuche: Greedy bis MCTS](https://sebastianhanisch.net/konzepte-heuristische-baumsuche.html)."
 )
