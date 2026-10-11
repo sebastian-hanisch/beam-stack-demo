@@ -307,10 +307,10 @@ if network == "grid":
 
     st.markdown("---")
 
-    st.subheader("🔬 Der Median täuscht: wie schwer ist der Schwanz?")
+    st.subheader("🔬 Der Median täuscht: wie schwer ist der Tail?")
     st.caption(
         "Expansionen bis zum Beweis relativ zu A\\* über 40 feste Instanzen (Seeds 200000–200039) mit den Rastergrößen/Hindernissen der Seitenleiste, je Breite 1–4. "
-        "Breite 1 ist Tiefensuche: meist schnell, aber mit einem schweren Schwanz - gekappte Läufe zählen mit ihrer Untergrenze. Bei Breite 1 und großen Rastern kann die Rechnung "
+        "Breite 1 ist Tiefensuche: meist schnell, aber mit einem schweren Tail - gekappte Läufe zählen mit ihrer Untergrenze. Bei Breite 1 und großen Rastern kann die Rechnung "
         "mehrere Minuten dauern (Obergrenze in der Seitenleiste senken)."
     )
     key_tail = replace(settings, seed=0, width=C.DEFAULT_WIDTH)

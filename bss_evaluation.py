@@ -186,7 +186,7 @@ def anytime_curves(settings, widths=C.CURVE_WIDTHS):
     return {"curves": out, "optimum": ucs.cost, "astar_expansions": astar.expansions, "astar_stored": astar.stored}
 
 
-# --- Ausreißer (Schwanz der Aufwandsverteilung) --------------------------------------------------------------------------------------------------
+# --- Ausreißer (Tail der Aufwandsverteilung) --------------------------------------------------------------------------------------------------
 
 
 @lru_cache(maxsize=512)
@@ -198,7 +198,7 @@ def _astar_only(network, side, obstacle_pct, seed):
 def tail(base, seeds=C.TAIL_SEEDS, widths=C.TAIL_WIDTHS, **changes):
     """Verteilung des Expansions-Faktors (BSS / A*) über viele feste Instanzen je Breite: Median, 75./90. Perzentil, Maximum (bei
     gekappten Läufen Untergrenze), Anteil gekappter Läufe und Anteil Läufe OHNE jede Lösung. Der Median allein verschweigt bei
-    Breite 1 den schweren Schwanz (Tiefensuche)."""
+    Breite 1 den schweren Tail (Tiefensuche)."""
     s0 = replace(base, **changes)
     out = {}
     for w in widths:

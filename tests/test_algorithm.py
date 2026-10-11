@@ -281,7 +281,7 @@ def test_inherited_heuristic_is_admissible_and_a_star_is_optimal():
         assert A.a_star(inst.graph, inst.start, inst.goal).cost == pytest.approx(ucs.cost, abs=EPS)
 
 
-# --- Ausreißer: Breite 1 ist Tiefensuche mit schwerem Schwanz -------------------------------------------------------------------------------
+# --- Ausreißer: Breite 1 ist Tiefensuche mit schwerem Tail -------------------------------------------------------------------------------
 
 
 def test_width_one_can_need_orders_of_magnitude_more_expansions_than_width_two():

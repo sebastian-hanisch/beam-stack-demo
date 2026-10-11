@@ -1,7 +1,7 @@
 """Jede Zahl in den Hilfetexten, Presets, Tabellen und Grenzen der App ist hier über die fünf festen Sweep-Instanzen belegt (der Ausreißer-
 Test über 40 feste Instanzen), mit denselben Auswertungsfunktionen wie die App selbst (`ev.run_config`/`ev.sweep`/`ev.tail`) - NIE über ein
 Ad-hoc-Skript. Positive UND negative Aussagen: BSS beweist bei jeder Breite das Optimum (positiv) - aber der Beweis ist teuer, der
-Speichergewinn verschwindet ab Breite ~6, Breite 1 hat einen schweren Schwanz, und eine Startschranke hilft nicht immer (negativ). Werte sind
+Speichergewinn verschwindet ab Breite ~6, Breite 1 hat einen schweren Tail, und eine Startschranke hilft nicht immer (negativ). Werte sind
 MEDIANE (Faktoren sind stark schief); gekappte Läufe werden getrennt ausgewiesen."""
 
 from dataclasses import replace
