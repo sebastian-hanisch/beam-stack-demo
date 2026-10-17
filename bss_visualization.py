@@ -3,6 +3,7 @@ Lösung), Pfad-Überlagerung, Anytime-Kurven (beste Kosten über kumulierte Expa
 Sweeps, Bewiesen-/Gekappt-Anteile, Rücksprünge je Schicht. Achsen sind gesperrt (fixedrange), damit Touch-Geräte beim Scrollen
 nicht zoomen."""
 
+import math
 import numpy as np
 import plotly.graph_objects as go
 
@@ -14,6 +15,23 @@ BEAM_COLOR = "#f58518"
 IDA_COLOR = "#54a24b"
 PALETTE = ["#7b3fbf", "#e45756", "#f58518", "#54a24b", "#4c78a8", "#b279a2", "#9d755d"]
 INF = float("inf")
+
+
+def _ref_line(fig, value, text, position, axis, log=True, **line_kwargs):
+    """Referenzlinie mit Beschriftung auf einer logarithmischen Achse: die Linie liegt auf dem Datenwert, die Beschriftung braucht log10 des Werts
+    (add_hline und add_vline setzen beide auf denselben Wert, die Beschriftung sitzt dann falsch und dehnt die Achse); log=False für lineare Achsen."""
+    if log and not value > 0.0:
+        return
+    pos = math.log10(value) if log else value
+    top, left = "top" in position, "left" in position
+    if axis == "y":
+        fig.add_hline(y=value, **line_kwargs)
+        if text:
+            fig.add_annotation(xref="paper", yref="y", x=0 if left else 1, y=pos, text=text, showarrow=False, xanchor="left" if left else "right", yanchor="bottom" if top else "top")
+    else:
+        fig.add_vline(x=value, **line_kwargs)
+        if text:
+            fig.add_annotation(xref="x", yref="paper", x=pos, y=1 if top else 0, text=text, showarrow=False, xanchor="right" if left else "left", yanchor="top" if top else "bottom")
 
 
 def lock_axes(fig):
@@ -120,7 +138,7 @@ def build_anytime(data, beam_point=None, highlight=None):
         fig.add_trace(go.Scatter(x=[cur["total"]], y=[pts[-1][1]], mode="markers", marker=dict(size=12, symbol="x" if cur["proved"] else "circle-open", color=PALETTE[i % len(PALETTE)], line=dict(width=2)),
                                  showlegend=False, hovertemplate=("bewiesen" if cur["proved"] else "gekappt (nicht bewiesen)") + "<extra></extra>"))
     fig.add_hline(y=opt, line=dict(color=ASTAR_COLOR, dash="dash", width=1.5), annotation_text="Optimum", annotation_position="bottom right")
-    fig.add_vline(x=data["astar_expansions"], line=dict(color=ASTAR_COLOR, dash="dot", width=1.5), annotation_text="A*", annotation_position="top")
+    _ref_line(fig, data["astar_expansions"], "A*", "top", "x", line=dict(color=ASTAR_COLOR, dash="dot", width=1.5))
     if beam_point is not None:
         fig.add_trace(go.Scatter(x=[beam_point[0]], y=[beam_point[1]], mode="markers", marker=dict(size=13, symbol="diamond", color=BEAM_COLOR, line=dict(width=1, color="white")), name="Beam Search (kein Zurück)"))
     xs_all = [data["astar_expansions"]] + [cur["total"] for cur in data["curves"].values()] + [e for cur in data["curves"].values() for e, _c in cur["points"]]
@@ -158,7 +176,7 @@ def build_sweep(rows, param_label, series, y_label, log_y=False, ref_line=None, 
         fig.add_trace(go.Scatter(x=xs + xs[::-1], y=hi + lo[::-1], mode="lines", fill="toself", fillcolor=f"rgba({rgb[0]},{rgb[1]},{rgb[2]},0.13)", line=dict(width=0), showlegend=False, hoverinfo="skip"))
         fig.add_trace(go.Scatter(x=xs, y=ys, mode="lines+markers", line=dict(color=color, width=2.5), name=name))
     if ref_line is not None:
-        fig.add_hline(y=ref_line, line=dict(color="#888", dash="dash", width=1.5), annotation_text=ref_label, annotation_position="top left")
+        _ref_line(fig, ref_line, ref_label, "top left", "y", log=log_y, line=dict(color="#888", dash="dash", width=1.5))
     fig.update_xaxes(title_text=param_label, type="category")
     fig.update_yaxes(title_text=y_label, type="log" if log_y else "linear")
     return _base(fig, 360, legend_y=-0.3)
